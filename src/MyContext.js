@@ -12,6 +12,8 @@ export const MyContextProvider=({children})=>{
     
     const [email,setEmail]=useState("");
     const[pwd,setPwd]=useState("");
+
+
     
     const handleEmailChange=(e)=>{
       setEmail(e.target.value);
@@ -23,13 +25,12 @@ export const MyContextProvider=({children})=>{
     }
 
     const navigate=useNavigate();
- 
-
+    const displayName=auth?.currentUser?.displayName;
     const signIn= async()=>{
      
       try{
         await createUserWithEmailAndPassword(auth,email,pwd);
-        navigate("/Home");
+        navigate("newpage");
       }
       catch(err){
         console.log(err.message);
@@ -39,7 +40,7 @@ export const MyContextProvider=({children})=>{
     const signWithGoogle= async()=>{
       try{
          await signInWithPopup(auth,googleAuth);
-         navigate("/Home")
+         navigate("/newpage")
         
       }
       catch(err){
@@ -62,7 +63,7 @@ export const MyContextProvider=({children})=>{
     }
     
     return(
-    <MyContext.Provider value={{email,setEmail,pwd,setPwd,handleEmailChange,handlePwdChange,signWithGoogle,signIn,logOut}}>
+    <MyContext.Provider value={{email,setEmail,pwd,setPwd,handleEmailChange,handlePwdChange,signWithGoogle,signIn,logOut,displayName}}>
         {children}
     </MyContext.Provider>)
 }

@@ -2,9 +2,10 @@ import React, { useContext } from 'react'
 import MyContext from './MyContext'
 
 const NewPage = () => {
-  const {logOut}=useContext(MyContext);
+  const {logOut,displayName}=useContext(MyContext);
   return (
-    <div>NewPage
+    <div>
+      <h1>Hi {displayName}! your logged in!</h1>
        <button type="submit" className="btn btn-primary" onClick={logOut} >Log Out</button>
     </div>
   )
