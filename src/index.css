@@ -20,11 +20,14 @@ code {
   align-items: center;
 }
 
-.LoginPage form ,.LoginPage label{
+.LoginPage form ,.LoginPage label,.LoginPage span{
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+}
+.LoginPage .mb-3 span, .LoginPage .general {
+  color: red;
 }
 
 .googleBtn{
