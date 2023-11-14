@@ -1,6 +1,6 @@
 import { createContext,useState } from "react";
 import {auth,googleAuth} from './config/firebase-config';
-import { createUserWithEmailAndPassword,signInWithPopup,signOut } from 'firebase/auth';
+import { signInWithEmailAndPassword,signInWithPopup,signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -29,7 +29,7 @@ export const MyContextProvider=({children})=>{
     const signIn= async()=>{
      
       try{
-        await createUserWithEmailAndPassword(auth,email,pwd);
+        await signInWithEmailAndPassword(auth,email,pwd);
         navigate("newpage");
       }
       catch(err){

@@ -30,3 +30,18 @@ code {
 .googleBtn{
   margin-top: 20px;
 }
+.signInPage{
+  width: 100%;
+  padding: 11rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signInPage form ,.signInPage label{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
