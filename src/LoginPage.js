@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import GoogleButton from 'react-google-button';
-import DataContext from './MyContext';
+import MyContext from './MyContext';
 
 
 
 const LoginPage = () => {
-  const {email,handleEmailChange,handlePwdChange,pwd,signIn,signWithGoogle,error}=useContext(DataContext);
+  const {email,handleEmailChange,handlePwdChange,pwd,signIn,signWithGoogle,error}=useContext(MyContext);
 
   return (
     <div className='LoginPage'>

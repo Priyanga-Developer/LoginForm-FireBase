@@ -1,6 +1,6 @@
-import { createContext,useState } from "react";
+import { createContext,useEffect,useState } from "react";
 import {auth,googleAuth} from './config/firebase-config';
-import { signInWithEmailAndPassword,signInWithPopup,signOut } from 'firebase/auth';
+import { signInWithEmailAndPassword,signInWithPopup,signOut,onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -13,6 +13,7 @@ export const MyContextProvider=({children})=>{
     const [email,setEmail]=useState("");
     const[pwd,setPwd]=useState("");
     const[error,setError]=useState({});
+    const [user,setUser]=useState("");
     // const[isCorrect,setIsCorrect]=useState(false);
     const [isSubmit,setIsSubmit]=useState(false);
 
@@ -92,9 +93,20 @@ export const MyContextProvider=({children})=>{
   
     
     }
+
+    useEffect(()=>{
+          const unsubscribe=onAuthStateChanged(auth,(currentUser)=>{
+            setUser(currentUser)
+            
+          })
+          return ()=>{
+            unsubscribe();
+          }
+    },[]);
+    console.log(user)
     
     return(
-    <MyContext.Provider value={{email,setEmail,pwd,setPwd,handleEmailChange,handlePwdChange,signWithGoogle,signIn,logOut,displayName,error}}>
+    <MyContext.Provider value={{email,setEmail,pwd,setPwd,handleEmailChange,handlePwdChange,signWithGoogle,signIn,logOut,displayName,error,user}}>
         {children}
     </MyContext.Provider>)
 }
